@@ -1,0 +1,48 @@
+<nav *ngIf="roles!=null" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Digital Banking</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+      <!-- group those two items in a dropdown menu item        -->
+        <li class="nav-item dropdown" *ngIf="roles!=null && roles.includes('ADMIN')">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+             aria-expanded="false">
+            Manage Customers
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="/customers">View Customers</a></li>
+            <li><a class="dropdown-item" routerLink="/add-customer">Add Customer</a></li>
+          </ul>
+        </li>
+
+
+        <li class="nav-item" *ngIf="roles!=null && roles.includes('ADMIN')">
+          <a class="nav-link" routerLink="/accounts">Manage Accounts</a>
+        </li>
+
+
+        <li class="nav-item" *ngIf="roles!=null && roles.includes('CUSTOMER')">
+          <a class="nav-link" routerLink="/customer-accounts/{{customerId}}">My Accounts</a>
+        </li>
+
+        <li class="nav-item" *ngIf="roles!=null && roles.includes('CUSTOMER')">
+          <a class="nav-link" routerLink="/update-customer/{{customerId}}">Edit profile</a>
+        </li>
+
+      </ul>
+        <button class="btn btn-danger" (click)="logout()">
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
+    </div>
+  </div>
+</nav>
+
+<div *ngIf="roles!=null" style="text-align: center">
+  <br>
+
+</div>
